@@ -1,0 +1,92 @@
+PHẦN 1: BÁO CÁO PHÂN TÍCH (INPUT/OUTPUT & PHẦN CỨNG)
+1. Phân tích Luồng Dữ liệu (Input / Output)
+Input (Đầu vào):
+
+Dữ liệu môi trường thời gian thực từ cảm biến (nhiệt độ, độ ẩm đất và không khí).
+
+Tín hiệu cấu hình hoặc lệnh điều khiển thủ công từ người dùng qua ứng dụng di động.
+
+Process (Xử lý trung tâm):
+
+Vi điều khiển / Gateway thu nhận tín hiệu, giải mã dữ liệu, so sánh với các ngưỡng thiết lập sẵn và đưa ra quyết định đóng/mở thiết bị ngoại vi.
+
+Output (Đầu ra):
+
+Hiển thị chỉ số trực quan lên màn hình / ứng dụng.
+
+Kích hoạt rơ-le vận hành máy bơm nước hoặc hệ thống quạt thông gió.
+
+2. Sơ đồ phối hợp phần cứng
+Plaintext
+[ Cảm biến độ ẩm ] ---> ( Gateway / Vi điều khiển ) ---> [ Nền tảng Cloud ] ---> [ Ứng dụng Di động ] ---> [ Thiết bị chấp hành (Máy bơm) ]
+PHẦN 2: FILE README.md HOÀN CHỈNH CHO DỰ ÁN
+Markdown
+# 🌿 SMART-FARM: HỆ THỐNG IOT CHO TRANG TRẠI LAN
+
+*Hệ thống nông nghiệp thông minh giúp tự động hóa quy trình chăm sóc hoa lan, tiết kiệm chi phí và tối ưu hóa năng suất.*
+
+---
+
+## 1. Sơ đồ kiến trúc hệ thống
+Dưới đây là tổng quan mô hình hoạt động từ cảm biến đến thiết bị thực thi:
+
+![Sơ đồ kiến trúc hệ thống Smart-Farm](https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=1200&q=80)
+
+---
+
+## 2. Chu kỳ xử lý lệnh của CPU (Fetch – Decode – Execute)
+Khi hệ thống nhận lệnh kích hoạt máy bơm nước tưới lan, vi điều khiển trải qua 3 bước cốt lõi:
+> - **Fetch (Lấy lệnh):** CPU truy xuất lệnh điều khiển máy bơm từ bộ nhớ chương trình dựa trên địa chỉ lưu trữ tại thanh ghi lệnh (Program Counter).
+> - **Decode (Giải mã lệnh):** Bộ giải mã dịch mã lệnh vừa lấy để xác định nhiệm vụ cụ thể cần thực hiện (ví dụ: bật chân GPIO cấp nguồn cho rơ-le máy bơm).
+> - **Execute (Thực thi):** Tín hiệu điện được phát ra chân vi điều khiển, kích hoạt máy bơm nước hoạt động thực tế tại vườn lan.
+
+---
+
+## 3. Mô hình kim tự tháp tri thức (DIKW) trong Smart-Farm
+Quá trình chuyển đổi dữ liệu thô thành hành động thực tế diễn ra theo các tầng:
+1. **Data (Dữ liệu):** Cảm biến đọc được thông số thô như `Độ ẩm = 65%`.
+2. **Information (Thông tin):** Hệ thống gom nhóm và nhận định `Độ ẩm đang thấp hơn mức tiêu chuẩn 70%`.
+3. **Knowledge (Tri thức):** Phân tích và đưa ra quy tắc `Lan cần được cấp nước ngay để tránh héo úa`.
+4. **Wisdom (Trí tuệ):** Tự động hóa toàn bộ quy trình ra quyết định và vận hành máy bơm hiệu quả, tiết kiệm nguồn nước tối đa.
+
+---
+
+## 4. Bảng thông số kỹ thuật thiết bị
+
+| Thành phần | Thiết bị sử dụng | Chức năng chính |
+| :--- | :--- | :--- |
+| **Cảm biến** | DHT22 | Đo lường nhiệt độ và độ ẩm không khí chính xác cao |
+| **Vi điều khiển** | ESP32 NodeMCU | Xử lý trung tâm, kết nối Wi-Fi lên Cloud |
+| **Thiết bị chấp hành**| Máy bơm mini 12V | Phun nước tự động theo chu lệnh từ hệ thống |
+
+---
+
+## 5. Hướng dẫn cài đặt nhanh
+
+Thực hiện các lệnh sau trên thiết bị điều khiển để thiết lập môi trường phần mềm:
+
+```bash
+# Cập nhật hệ thống
+sudo apt update && sudo apt upgrade -y
+
+# Cài đặt thư viện hỗ trợ cảm biến
+sudo pip3 install Adafruit_DHT
+6. Tính năng hệ thống (Task List)
+[x] Kết nối phần cứng cảm biến và vi điều khiển.
+
+[x] Cấu hình giao tiếp Wi-Fi truyền dữ liệu lên đám mây.
+
+[x] Thiết lập kịch bản tự động bật tắt máy bơm theo ngưỡng độ ẩm.
+
+[ ] Kiểm tra thực tế độ ổn định của hệ thống tại vườn lan.
+
+
+---
+
+## PHẦN 3: KIỂM THỬ & XỬ LÝ SỰ CỐ (TROUBLESHOOTING)
+
+> **Lưu ý kỹ thuật trường hợp RAM bị đầy dữ liệu nhật ký (Log):**
+> Khi hệ thống hoạt động liên tục trong thời gian dài và vùng nhớ RAM bị quá tải do tệp nhật ký (log file) phình lớn, cần thực hiện quy trình xử lý an toàn sau:
+> 1. Dừng ngay lập tức các tiến trình ghi log tạm thời bằng lệnh dừng dịch vụ hệ thống.
+> 2. Xóa hoặc nén các tệp nhật ký cũ đang chiếm dụng bộ nhớ trong thư mục `/var/log`.
+> 3. Khởi động lại dịch vụ giám sát với mức giới hạn dung lượng log (`logrotate`) để tránh lặp lại sự cố tràn RAM.

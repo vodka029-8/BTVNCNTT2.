@@ -1,0 +1,57 @@
+1. Phần 1: Báo cáo phân tích sự cố
+Sai lầm trong tư duy của Nam khi dùng file Rich Text (.docx) cho dự án mã nguồn:
+Xem file Word (.docx) như file văn bản thuần túy (Plain Text): Nam lầm tưởng rằng tệp Word chỉ chứa chữ và có thể quản lý giống như code thông thường. Trên thực tế, định dạng .docx là một tệp nén (ZIP archive) chứa rất nhiều file XML, tệp nhị phân và siêu dữ liệu (metadata) phức tạp ở bên trong.
+
+Thiếu hiểu cơ chế so sánh khác biệt (Git Diff) và kiểm soát phiên bản: Khi Nam đẩy file .docx lên GitHub, hệ thống không thể đọc hiểu và bóc tách từng dòng chữ thay đổi giống như .md hoặc .txt. Điều này dẫn đến việc Git luôn nhận diện toàn bộ tệp bị thay đổi hoàn toàn mỗi khi có một chỉnh sửa dù là nhỏ nhất (như một dấu phẩy), gây ra lỗi xung đột (Conflict) toàn bộ file và làm đồng đội không thể xem trực tiếp nội dung trên trình duyệt.
+
+Tại sao Markdown (.md) lại an toàn và tối ưu hơn?
+Cấu trúc Plain Text siêu nhẹ: Markdown lưu trữ hoàn toàn dưới dạng văn bản thuần túy (Plain Text) nên dung lượng cực kỳ nhỏ gọn, không chứa mã nhị phân rườm rà.
+
+Khả năng chống hư hại dữ liệu cao (Fault Tolerance): Nếu xảy ra lỗi đường truyền mạng làm mất một vài ký tự trong file Markdown, cấu trúc tài liệu tổng thể vẫn giữ nguyên vẹn và các phần còn lại vẫn đọc được bình thường. Ngược lại, tệp .docx sẽ bị hỏng toàn bộ cấu trúc và không thể mở được nếu mất mát dù chỉ một vài byte dữ liệu cốt lõi bên trong file nén XML.
+
+Hỗ trợ tối ưu cho Git Diff và GitHub Viewer: Markdown được hiển thị trực tiếp thành giao diện đồ họa đẹp mắt ngay trên trình duyệt web của GitHub, đồng thời giúp công cụ Git dễ dàng theo dõi từng dòng thay đổi (line-by-line comparison) mà không lo xung đột nặng nề.
+
+2. Phần 2: Nội dung tài liệu chuẩn hóa trên GitHub (README.md)
+Markdown
+# 🌿 DỰ ÁN GREEN-TECH: HỆ THỐNG GIÁM SÁT NÔNG NGHIỆP THÔNG MINH
+
+> *Chào mừng đến với kho lưu trữ mã nguồn và tài liệu kỹ thuật của dự án Green-Tech. Dự án hướng tới việc ứng dụng công nghệ IoT và tự động hóa để tối ưu hóa quy trình canh tác cho người nông dân.*
+
+---
+
+## 1. Giới thiệu tổng quan
+Green-Tech là giải pháp phần cứng kết hợp phần mềm giúp theo dõi các thông số môi trường (nhiệt độ, độ ẩm không khí, độ ẩm đất) theo thời gian thực, từ đó tự động điều khiển hệ thống tưới tiêu nhằm tiết kiệm nước và nâng cao năng suất cây trồng.
+
+---
+
+## 2. Các tính năng chính của hệ thống
+- **Giám sát thời gian thực:** Cảm biến liên tục gửi dữ liệu về vi điều khiển.
+- **Tự động hóa cảnh báo:** Tự động kích hoạt máy bơm khi điều kiện đất khô hạn.
+- **Giao diện trực quan:** Dễ dàng theo dõi thông số qua bảng điều khiển trên nền tảng đám mây.
+
+---
+
+## 3. Hướng dẫn cài đặt cấu hình ban đầu
+Thực thi các câu lệnh sau trên thiết bị điều khiển (Raspberry Pi / Linux Terminal):
+
+```bash
+# Cập nhật hệ thống
+sudo apt update && sudo apt upgrade -y
+
+# Cài đặt các thư viện phụ thuộc
+sudo apt install -y python3-pip
+4. Danh sách công việc (Task List)
+[x] Hoàn thiện bản thiết kế sơ đồ khối phần cứng.
+
+[x] Viết script Python đọc tín hiệu cảm biến.
+
+[ ] Kiểm nghiệm thực tế cơ chế tự động hóa máy bơm tại vườn.
+
+
+---
+
+## 3. Hướng dẫn nộp bài lên hệ thống LMS Portal
+1. Tạo một Repository mới trên GitHub ở chế độ **Public** với tên chính xác: `D26TXCN03_IT108_Session08_Ex06`.
+2. Đẩy file `README.md` hoàn chỉnh ở trên lên repository.
+3. Sao chép đường dẫn (URL) của repository công khai đó.
+4. Truy cập vào mục bài tập tương ứng trên [LMS Portal](https://lms-student.rikkei.edu.vn/courses/6a88fb77a493e63f11a75432), dán link vào ô **Link GitHub / Google Docs / Google Drive để nộp bài** và bấm nút **Nộp bài tập**.

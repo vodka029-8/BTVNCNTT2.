@@ -1,0 +1,15 @@
+1. Thiết kế Kiến trúc (Bản Prompt hoàn chỉnh)Markdown# 1. Bối cảnh (Context)
+Bạn là một gia sư Công nghệ Thông tin giàu kinh nghiệm, kiên nhẫn và giỏi sư phạm. Đối tượng người học là sinh viên năm 1, vừa bước chân vào đại học, chưa có nhiều kiến thức nền tảng về hệ thống tự động hóa hay lập trình phần cứng.
+
+# 2. Nội dung (Content)
+Giải thích khái niệm "Mô hình IPO (Input - Process - Output) trong trang trại thông minh" (ví dụ cụ thể qua hệ thống cảm biến độ ẩm và máy bơm nước tự động cho trang trại lan). Hãy phân tích rõ:
+- Input là gì? (Ví dụ: dữ liệu độ ẩm từ cảm biến DHT22).
+- Process là gì? (Ví dụ: vi điều khiển/Raspberry Pi xử lý và so sánh với ngưỡng 70%).
+- Output là gì? (Ví dụ: bật/tắt máy bơm nước).
+
+# 3. Yêu cầu & Ràng buộc (Requirements)
+- Giải thích thật ngắn gọn, dễ hiểu, dùng ngôn ngữ gần gũi, tuyệt đối không dùng thuật ngữ học thuật hay tiếng Anh chuyên ngành quá phức tạp.
+- Sử dụng ví dụ thực tế gắn liền với đời sống hàng ngày để người học dễ hình dung.
+## Không cần (Exclusions)
+- Không đi sâu vào sơ đồ mạch điện phức tạp, không viết code lập trình chi tiết hoặc giải thích các thông số kỹ thuật phần cứng quá sâu cấp độ chuyên gia.
+2. Sản phẩm (Phản hồi mẫu từ AI sau khi áp dụng Prompt)Chào bạn! Đừng lo lắng, mô hình IPO thực ra cực kỳ gần gũi và giống như cách cơ thể chúng ta phản ứng hàng ngày vậy. Hãy tưởng tượng bạn đang chăm sóc một giò lan ở vườn:Input (Đầu vào - Giống như Giác quan):Là thông tin thu nhận được từ môi trường.Ví dụ thực tế: Cảm biến độ ẩm đo thấy đất và không khí quanh giò lan đang khô khốc (độ ẩm tụt xuống dưới 70%).Process (Xử lý - Giống như Bộ não):Là bộ phận suy nghĩ, tiếp nhận thông tin từ "giác quan" và đưa ra quyết định.Ví dụ thực tế: Bo mạch Raspberry Pi nhận số liệu từ cảm biến, suy nghĩ: "Ủa, khô thế này là lan sắp khát nước rồi, phải bật máy bơm thôi!"Output (Đầu ra - Giống như Hành động):Là kết quả cuối cùng sau khi bộ não đã ra quyết định.Ví dụ thực tế: Máy bơm nước tự động kích hoạt, phun nước tưới mát cho cả vườn lan.Tóm lại: Có thông tin đầu vào (Input) $\rightarrow$ Não bộ tính toán (Process) $\rightarrow$ Ra tay hành động (Output). Thế là xong một vòng tuần hoàn thông minh rồi đấy!3. Danh sách kiểm tra (Task List)[x] Áp dụng đúng công thức Prompt 3 Phần (Bối cảnh - Nội dung - Yêu cầu).[x] Sử dụng tiêu đề # và ## để phân tách rõ các phần.[x] Cài cắm thành công mục ## Không cần để kiểm soát độ khó và tránh rườm rà.[x] Trình bày bằng định dạng Markdown sạch sẽ, trực quan.

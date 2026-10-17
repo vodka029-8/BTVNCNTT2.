@@ -1,0 +1,100 @@
+PHẦN 5: YÊU CẦU ĐẦU RA
+1. Báo cáo phân tích (I/O)
+Input (Văn bản thô / Raw text):
+
+Các đoạn văn bản hướng dẫn cài đặt hệ thống giám sát độ ẩm cho trang trại lan được viết dạng text thuần túy không có định dạng.
+
+Mã nguồn Python nguyên bản chưa được phân vùng hoặc làm nổi bật cấu trúc.
+
+Dữ liệu so sánh thô giữa các loại cảm biến (DHT11 và DHT22).
+
+Output (Giao diện render chuyên nghiệp trên GitHub Markdown):
+
+Tài liệu được phân cấp rõ ràng bằng các tiêu đề (#, ##, ###).
+
+Các đoạn mã lệnh Terminal và Python hiển thị trực quan, dễ đọc nhờ sử dụng Inline Code (cho lệnh ngắn, tên biến) và Code Block có màu sắc cú pháp (Syntax Highlighting).
+
+Bảng biểu so sánh trực quan, căn chỉnh đẹp mắt cùng danh sách công việc tương tác (Task List) trực quan.
+
+2. Source Code (README.md)
+Bạn có thể sao chép toàn bộ nội dung dưới đây để dán trực tiếp vào file README.md trong kho lưu trữ GitHub của mình:
+
+Markdown
+# HƯỚNG DẪN CÀI ĐẶT CẢM BIẾN ĐỘ ẨM CHO TRANG TRẠI LAN
+
+Tài liệu này cung cấp các bước chi tiết để thiết lập hệ thống cảm biến độ ẩm phục vụ cho việc theo dõi và chăm sóc hoa lan tự động.
+
+---
+
+## 1. Tổng quan hệ thống
+Cảm biến độ ẩm giúp theo dõi độ ẩm không khí trong nhà lưới, đảm bảo môi trường tối ưu cho Lan phát triển. 
+
+### Bảng so sánh loại cảm biến (Cũ vs. Mới)
+
+| Tiêu chí | Cảm biến loại cũ (DHT11) | Cảm biến loại mới (DHT22) |
+| :--- | :--- | :--- |
+| **Độ chính xác (Độ ẩm)** | $\pm$5% RH | **$\pm$2% đến 5% RH** |
+| **Khoảng đo** | 20-80% RH | **0-100% RH** |
+| **Tần suất đọc dữ liệu** | 1 Hz (1 lần/giây) | **0.5 Hz (0.5 lần/giây)** |
+| **Chi phí** | Thấp | **Trung bình** |
+
+---
+
+## 2. Các bước cài đặt phần mềm trên Raspberry Pi
+
+Để bắt đầu, bạn cần kết nối vào thiết bị qua **Terminal** và thực hiện các lệnh sau:
+
+### Bước 1: Cập nhật hệ thống
+Mở Terminal và cập nhật danh sách gói bằng lệnh `sudo apt update && sudo apt upgrade -y`.
+
+### Bước 2: Cài đặt thư viện cho cảm biến DHT22
+Cài đặt thư viện đọc dữ liệu từ cảm biến bằng Python:
+```bash
+sudo apt install -y python3-pip
+sudo pip3 install Adafruit_DHT
+Bước 3: Kích hoạt giao diện 1-Wire (nếu dùng DHT22)
+Sử dụng câu lệnh sudo raspi-config để bật giao tiếp chân tín hiệu.
+
+3. Mã nguồn Python điều khiển máy bơm tự động
+Đoạn code mẫu dưới đây đọc dữ liệu từ cảm biến và tự động kích hoạt chân GPIO nếu độ ẩm xuống dưới mức tiêu chuẩn:
+
+Python
+import Adafruit_DHT
+import time
+
+# Cấu hình loại cảm biến và chân GPIO kết nối
+SENSOR = Adafruit_DHT.DHT22
+DHT_PIN = 4  # Chân DATA kết nối với GPIO 4
+
+print("Đang khởi động hệ thống giám sát độ ẩm trang trại Lan...")
+
+try:
+    while True:
+        # Đọc độ ẩm và nhiệt độ từ cảm biến
+        humidity, temperature = Adafruit_DHT.read_retry(SENSOR, DHT_PIN)
+        
+        if humidity is not None and temperature is not None:
+            print(f"Nhiệt độ: {temperature:.1f}C | Độ ẩm: {humidity:.1f}%")
+            
+            # Kiểm tra ngưỡng độ ẩm (Dưới 70% sẽ bật máy bơm)
+            if humidity < 70.0:
+                print("[CẢNH BÁO] Độ ẩm thấp! Đang kích hoạt máy bơm nước...")
+            else:
+                print("[AN TOÀN] Độ ẩm đạt chuẩn. Hệ thống nghỉ ngơi.")
+        else:
+            print("Lỗi: Không thể đọc dữ liệu từ cảm biến. Kiểm tra lại kết nối!")
+            
+        time.sleep(5)
+
+except KeyboardInterrupt:
+    print("\nĐã dừng chương trình bởi người dùng.")
+4. Danh sách kiểm tra thiết bị (Task List)
+[x] Kiểm tra sơ đồ chân kết nối phần cứng (VCC, GND, DATA).
+
+[x] Cập nhật hệ điều hành Raspberry Pi mới nhất.
+
+[x] Cài đặt thành công thư viện Adafruit_DHT.
+
+[ ] Chạy thử nghiệm script Python đọc giá trị cảm biến lần đầu.
+
+[ ] Kiểm tra cơ chế tự động kích hoạt máy bơm thực tế tại vườn Lan.
